@@ -46,14 +46,8 @@ class FirstScreen extends StatelessWidget{
       body: Container(
         decoration: BoxDecoration(
           color: Colors.red,
-          //shape: BoxShape.circle,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(2, 6),
-              blurRadius: 10,
-            )
-          ]
+          border: Border.all(color: Colors.green,width: 3),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: const Text(
             'Hi',
