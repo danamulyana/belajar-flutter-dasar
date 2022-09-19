@@ -43,21 +43,14 @@ class FirstScreen extends StatelessWidget{
           onPressed: (){},
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.red,
-          border: Border.all(color: Colors.green,width: 3),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: const Text(
-            'Hi',
-            style: TextStyle(fontSize: 40),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: (){},
-      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: const <Widget>[
+          Icon(Icons.share),
+          Icon(Icons.thumb_up),
+          Icon(Icons.thumb_down),
+        ],
+      )
     );
   }
 }
