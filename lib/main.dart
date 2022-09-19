@@ -13,15 +13,42 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello, World!'),
+      home: const FirstScreen(),//Panggil FirstScreen di sini
+    );
+  }
+}
+
+class FirstScreen extends StatelessWidget{
+  const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("First Screen"),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: (){},
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+          ),
+          onPressed: (){},
         ),
-        body: Center(
-          child: BiggerText(
-            text: "Hello world!",
-          ),// Ubah widget Heading ke PerubahanText
-        ),
+      ),
+      body: const Center(
+        child: Text('Hello world!'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: (){},
       ),
     );
   }
