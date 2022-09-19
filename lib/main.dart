@@ -34,16 +34,12 @@ class _FirstScreenState extends State<FirstScreen>{
       appBar: AppBar(
         title: const Text('First Screen'),
       ),
-      body: ListTile(
-        leading: Checkbox(
-          value: agree,
-          onChanged: (bool? value){
-            setState(() {
-              agree = value!;
-            });
-          },
+      body: Center(
+        child: Image.asset(
+          'images/IDCAMP_LOGO.png',
+          width: 200,
+          height: 200,
         ),
-        title: Text('Agree / Disegree'),
       )
     );
   }
