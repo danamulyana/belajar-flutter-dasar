@@ -26,7 +26,7 @@ class FirstScreen extends StatefulWidget{
 }
 
 class _FirstScreenState extends State<FirstScreen>{
-  String? language;
+  String _name = '';
 
   @override
   Widget build(BuildContext context){
@@ -34,20 +34,37 @@ class _FirstScreenState extends State<FirstScreen>{
       appBar: AppBar(
         title: const Text('First Screen'),
       ),
-      body: DropdownButton<String>(
-        items: const <DropdownMenuItem<String>>[
-          DropdownMenuItem<String>(value: 'dart',child: Text('Dart')),
-          DropdownMenuItem<String>(value: 'Kotlin',child: Text('Kotlin')),
-          DropdownMenuItem<String>(value: 'Swift',child: Text('Swift')),
-        ],
-        value: language,
-        hint: const Text('Select Language'),
-        onChanged: (String? value){
-          setState(() {
-            language = value;
-          });
-        },
-      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: const InputDecoration(
+                hintText: 'Write your name here...',
+                labelText: 'Your name',
+              ),
+              onChanged: (String value){
+                setState(() {
+                  _name = value;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+                child: const Text('Submit'),
+                onPressed: (){
+                  showDialog(
+                      context: context,
+                      builder: (context){
+                            return AlertDialog(
+                              content: Text('Hello, $_name'),
+                            );
+                      });
+                },
+            )
+          ],
+        ),
+      )
     );
   }
 }
