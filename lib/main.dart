@@ -26,7 +26,7 @@ class FirstScreen extends StatefulWidget{
 }
 
 class _FirstScreenState extends State<FirstScreen>{
-  String? language;
+  bool agree = false;
 
   @override
   Widget build(BuildContext context){
@@ -34,56 +34,17 @@ class _FirstScreenState extends State<FirstScreen>{
       appBar: AppBar(
         title: const Text('First Screen'),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: Radio<String>(
-              value: 'Dart',
-              groupValue: language,
-              onChanged: (String? value){
-                setState(() {
-                  language = value;
-                  showSnackbar();
-                });
-              },
-            ),
-            title: Text('Dart'),
-          ),
-          ListTile(
-            leading: Radio<String>(
-              value: 'Kotlin',
-              groupValue: language,
-              onChanged: (String? value) {
-                setState(() {
-                  language = value;
-                  showSnackbar();
-                });
-              },
-            ),
-            title: Text('Kotlin'),
-          ),
-          ListTile(
-            leading: Radio<String>(
-              value: 'Swift',
-              groupValue: language,
-              onChanged: (String? value) {
-                setState(() {
-                  language = value;
-                  showSnackbar();
-                });
-              },
-            ),
-            title: Text('Swift'),
-          ),
-        ],
+      body: ListTile(
+        leading: Checkbox(
+          value: agree,
+          onChanged: (bool? value){
+            setState(() {
+              agree = value!;
+            });
+          },
+        ),
+        title: Text('Agree / Disegree'),
       )
-    );
-  }
-
-  void showSnackbar(){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$language selected'),duration: Duration(seconds: 1),)
     );
   }
 }
