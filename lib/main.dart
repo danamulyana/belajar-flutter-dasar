@@ -18,37 +18,36 @@ class MyApp extends StatelessWidget{
   }
 }
 
-class FirstScreen extends StatelessWidget{
+class FirstScreen extends StatefulWidget{
   const FirstScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FirstScreen> createState() => _FirstScreenState();
+}
+
+class _FirstScreenState extends State<FirstScreen>{
+  String? language;
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("First Screen"),
-        actions: <Widget>[
-          IconButton(
-              icon: const Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              onPressed: (){},
-          ),
-        ],
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-          ),
-          onPressed: (){},
-        ),
+        title: const Text('First Screen'),
       ),
-      body: Column(
-        children: const <Widget>[
-          Text('Sebuah Judul',style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),),
-          Text('Lorem12')
+      body: DropdownButton<String>(
+        items: const <DropdownMenuItem<String>>[
+          DropdownMenuItem<String>(value: 'dart',child: Text('Dart')),
+          DropdownMenuItem<String>(value: 'Kotlin',child: Text('Kotlin')),
+          DropdownMenuItem<String>(value: 'Swift',child: Text('Swift')),
         ],
-      )
+        value: language,
+        hint: const Text('Select Language'),
+        onChanged: (String? value){
+          setState(() {
+            language = value;
+          });
+        },
+      ),
     );
   }
 }
