@@ -43,12 +43,10 @@ class FirstScreen extends StatelessWidget{
           onPressed: (){},
         ),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Column(
         children: const <Widget>[
-          Icon(Icons.share),
-          Icon(Icons.thumb_up),
-          Icon(Icons.thumb_down),
+          Text('Sebuah Judul',style: TextStyle(fontSize: 32,fontWeight: FontWeight.bold),),
+          Text('Lorem12')
         ],
       )
     );
