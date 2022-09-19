@@ -26,7 +26,7 @@ class FirstScreen extends StatefulWidget{
 }
 
 class _FirstScreenState extends State<FirstScreen>{
-  TextEditingController _controller = TextEditingController();
+  bool lightOn = false;
 
   @override
   Widget build(BuildContext context){
@@ -34,40 +34,22 @@ class _FirstScreenState extends State<FirstScreen>{
       appBar: AppBar(
         title: const Text('First Screen'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                hintText: 'Write your name here...',
-                labelText: 'Your name',
-              ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-                child: const Text('Submit'),
-                onPressed: (){
-                  showDialog(
-                      context: context,
-                      builder: (context){
-                            return AlertDialog(
-                              content: Text('Hello, ${_controller.text}'),
-                            );
-                      });
-                },
+      body: Switch(
+        value: lightOn,
+        onChanged: (bool value){
+          setState(() {
+            lightOn = value;
+          });
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(lightOn ? 'Light On' : 'Light off'),
+              duration: Duration(seconds: 1),
             )
-          ],
-        ),
+          );
+        },
       )
     );
-  }
-
-  @override
-  void dispose(){
-    _controller.dispose();
-    super.dispose();
   }
 }
 
