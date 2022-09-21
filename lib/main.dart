@@ -13,10 +13,67 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ExpandedFlexiblePage(),
+      home: const FirstScreen(),
     );
   }
 }
+
+//Navigation
+class FirstScreen extends StatelessWidget{
+  const FirstScreen({Key? key}) : super(key: key);
+  final String message = 'Hello from First Screen!';
+  
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('First Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Pindah Screen'),
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondScreen(message))
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SecondScreen extends StatelessWidget{
+  final String message;
+
+  const SecondScreen(this.message, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(message),
+            OutlineButton(
+              child: const Text('Kembali'),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//END Navigation
 
 class ExpandedFlexiblePage extends StatelessWidget {
   const ExpandedFlexiblePage({Key? key}) : super(key: key);
@@ -250,32 +307,32 @@ class ScrollingScreen extends StatelessWidget{
   }
 }
 
-class FirstScreen extends StatefulWidget{
-  const FirstScreen({Key? key}) : super(key: key);
-
-  @override
-  State<FirstScreen> createState() => _FirstScreenState();
-}
-
-class _FirstScreenState extends State<FirstScreen>{
-  bool agree = false;
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-      ),
-      body: Center(
-        child: Image.asset(
-          'images/IDCAMP_LOGO.png',
-          width: 200,
-          height: 200,
-        ),
-      )
-    );
-  }
-}
+// class FirstScreen extends StatefulWidget{
+//   const FirstScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   State<FirstScreen> createState() => _FirstScreenState();
+// }
+//
+// class _FirstScreenState extends State<FirstScreen>{
+//   bool agree = false;
+//
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text('First Screen'),
+//       ),
+//       body: Center(
+//         child: Image.asset(
+//           'images/IDCAMP_LOGO.png',
+//           width: 200,
+//           height: 200,
+//         ),
+//       )
+//     );
+//   }
+// }
 
 class Heading extends StatelessWidget{
   final String text; // state text bersifat final
